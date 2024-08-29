@@ -58,28 +58,39 @@ app.route("/articles")
 app.route("/articles/:articleTitle")
     .get((req, res) => {
         Article.findOne({
-            title: req.params.articleTitle
-        }).then((result) => {
-            if (result) {
-                res.send(result);
-            } else {
-                res.send("No article found with that title");
-            }
-        }).catch((err) => {
-            res.send(err);
-        });
+            title: req.params.articleTitle,
+        })
+            .then((result) => {
+                if (result) {
+                    res.send(result);
+                } else {
+                    res.send("No article found with that title");
+                }
+            })
+            .catch((err) => {
+                res.send(err);
+            });
     })
     .put((req, res) => {
-        Article.updateOne({
-            title: req.params.articleTitle
-        }, {
-            title: req.body.title,
-            content: req.body.content
-        }).then(() => {
-            res.send("Successfully updated article");
-        }).catch((err) => {
-            res.send(err);
-        });
+        Article.updateOne(
+            {
+                title: req.params.articleTitle,
+            },
+            {
+                title: req.body.title,
+                content: req.body.content,
+            }
+        )
+            .then((result) => {
+                if (result.matchedCount === 0) {
+                    res.send("No article found with that title");
+                } else {
+                    res.send("Successfully updated article");
+                }
+            })
+            .catch((err) => {
+                res.send(err);
+            });
     });
 
 app.listen(3000, function () {
