@@ -79,8 +79,9 @@ app.route("/articles/:articleTitle")
             {
                 title: req.body.title,
                 content: req.body.content,
-            }, {
-                overwrite: true
+            },
+            {
+                overwrite: true,
             }
         )
             .then((result) => {
@@ -100,7 +101,7 @@ app.route("/articles/:articleTitle")
                 title: req.params.articleTitle,
             },
             {
-                $set: req.body
+                $set: req.body,
             }
         )
             .then((result) => {
@@ -113,6 +114,14 @@ app.route("/articles/:articleTitle")
             .catch((err) => {
                 res.send(err);
             });
+    }).delete((req, res) => {
+        Article.deleteOne({
+            title: req.params.articleTitle
+        }).then(() => {
+            res.send("Successfully deleted article");
+        }).catch((err) => {
+            res.send(err);
+        })
     });
 
 app.listen(3000, function () {
