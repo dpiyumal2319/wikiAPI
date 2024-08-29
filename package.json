@@ -1,0 +1,24 @@
+{
+  "name": "wikiapi",
+  "version": "1.0.0",
+  "description": "simple rest api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpiyumal2319/wikiAPI.git"
+  },
+  "author": "Dasun Piyumal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpiyumal2319/wikiAPI/issues"
+  },
+  "homepage": "https://github.com/dpiyumal2319/wikiAPI#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.6.0"
+  }
+}
