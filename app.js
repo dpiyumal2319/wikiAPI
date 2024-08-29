@@ -79,6 +79,28 @@ app.route("/articles/:articleTitle")
             {
                 title: req.body.title,
                 content: req.body.content,
+            }, {
+                overwrite: true
+            }
+        )
+            .then((result) => {
+                if (result.matchedCount === 0) {
+                    res.send("No article found with that title");
+                } else {
+                    res.send("Successfully updated article");
+                }
+            })
+            .catch((err) => {
+                res.send(err);
+            });
+    })
+    .patch((req, res) => {
+        Article.updateOne(
+            {
+                title: req.params.articleTitle,
+            },
+            {
+                $set: req.body
             }
         )
             .then((result) => {
